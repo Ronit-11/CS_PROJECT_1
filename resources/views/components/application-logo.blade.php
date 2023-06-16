@@ -1,1 +1,1 @@
-<img src="{{ URL('Images/logo-social.jpg') }}" alt="resources/views/components/application-logo.blade.php" width="70px"/>
+<img src="{{ URL('Images/SERV.png') }}" alt="resources/views/components/application-logo.blade.php" width="70px"/>
