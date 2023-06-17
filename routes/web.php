@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//google login
+Route::get('auth/google', [GoogleLoginController::class, 'googleRedirect']);
+Route::get('auth/google/callback', [GoogleLoginController::class, 'loginWithGoogle']);
