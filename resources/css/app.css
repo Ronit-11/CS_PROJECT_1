@@ -5,3 +5,7 @@
 [x-cloak] {
     display: none;
 }
+
+.mr-4{
+    margin-right: 1rem;
+}

@@ -31,3 +31,5 @@ Route::middleware([
 //google login
 Route::get('auth/google', [GoogleLoginController::class, 'googleRedirect']);
 Route::get('auth/google/callback', [GoogleLoginController::class, 'loginWithGoogle']);
+
+//Route::get('redirectUser', 'App\Http\Controllers\HomeController@Index');
