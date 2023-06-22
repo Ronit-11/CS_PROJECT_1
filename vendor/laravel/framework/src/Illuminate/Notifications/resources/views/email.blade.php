@@ -5,8 +5,9 @@
 @else
 @if ($level === 'error')
 # @lang('Whoops!')
+    {{ Auth::user()->name }}
 @else
-# @lang('Hello'), {{ Auth::user()->name }}
+    # @lang('Hello'),
 @endif
 @endif
 

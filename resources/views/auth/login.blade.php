@@ -43,13 +43,13 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
-            <hr class="my-2 p-2">
-            <div class="mt-4">
-                <label for="password" class="col-md-4 col-form-label text-md-end"></label>
-                <div class="col-md-6">
-                    <a class="btn btn-primary btn-block justify-center w-full" href="{{ URL('auth/google') }}"> Login with Google</a>
+            <hr class="my-2 p-2 mt-4 borde">
+
+            <x-button class="flex w-full justify-center">
+                <div class="col-md-6 justify-items-center">
+                    <a class="btn btn-primary btn-block justify-between" href="{{ URL('auth/google') }}"> Login with Google</a>
                 </div>
-            </div>
+            </x-button>
         </form>
     </x-authentication-card>
 </x-guest-layout>
