@@ -13,7 +13,7 @@
 
             <div class="block">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full input-uneditable" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
@@ -30,6 +30,10 @@
                 <x-button>
                     {{ __('Reset Password') }}
                 </x-button>
+            </div>
+            <div>
+                <p>The password must be at least 9 characters and contain at least one uppercase character, one special character and one number.
+                </p>
             </div>
         </form>
     </x-authentication-card>

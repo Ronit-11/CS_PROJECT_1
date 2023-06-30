@@ -3,3 +3,17 @@
     font-size:64px;
     color: rgb(255, 145, 077);
 }
+.input-uneditable{
+    pointer-events: none;
+    --tw-border-opacity: 1;
+    border-color:rgb(255 145 077 / var(--tw-border-opacity));
+    --tw-bacground-opacity:.05;
+    background-color:rgb(255 145 077 / var(--tw-bacground-opacity));
+}
+.fw-h{
+    font-weight: bolder;
+    font-size: xx-large;
+}
+.margin-top-2{
+    margin-top: 2px;
+}

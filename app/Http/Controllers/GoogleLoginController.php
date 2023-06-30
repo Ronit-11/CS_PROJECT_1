@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Laravel\Fortify\Fortify;
@@ -24,20 +25,20 @@ class GoogleLoginController extends Controller
 
             if($existingUser){
                 Auth::login($existingUser);
+                if ( ! $existingUser->hasVerifiedEmail()) {
+                    $existingUser->sendEmailVerificationNotification();
+                }
                 return redirect('/login');
-                //return route('auth.verification.send');
-                //return redirect([EmailVerificationPromptController::class, '__invoke']);
             }else{
                 $createUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
                 ]);
-
+                $createUser->assignRole('User');
+                $createUser->sendEmailVerificationNotification();
                 Auth::login($createUser);
                 return redirect('/login');
-                //return route('auth.verification.send');
-                //return [EmailVerificationPromptController::class, '__invoke'];
             }
 
         } catch (\Throwable $th) {
