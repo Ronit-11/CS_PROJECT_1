@@ -7,7 +7,11 @@
 # @lang('Whoops!')
     {{ Auth::user()->name }}
 @else
-    # @lang('Hello'),
+    @if (! empty( Auth::user()->name ))
+        # @lang('Hello'), {{ Auth::user()->name }}
+    @else
+        # @lang('Hello')
+    @endif
 @endif
 @endif
 

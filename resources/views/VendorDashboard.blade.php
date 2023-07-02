@@ -8,11 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                @include('components.welcome')
-                {{-- @include is used to parse the product array to subcomponent
-                <x-welcome />--}}
+                <p class="text-2xl"> Vendor VIEW</p>
             </div>
         </div>
     </div>
 </x-app-layout>
-

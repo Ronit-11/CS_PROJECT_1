@@ -2,12 +2,14 @@
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
+
         </x-slot>
 
         <x-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
+            <p class="flex justify-center fw-h">Sign Up to SERV</p>
 
             <div>
                 <x-label for="name" value="{{ __('Name') }}" />
@@ -52,9 +54,14 @@
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Sign Up') }}
                 </x-button>
             </div>
+            <div>
+                <p>The password must be at least 9 characters and contain at least one uppercase character, one special character and one number.
+                </p>
+            </div>
+
         </form>
     </x-authentication-card>
 </x-guest-layout>
