@@ -35,6 +35,7 @@ class GoogleLoginController extends Controller
                     'email' => $user->email,
                     'google_id' => $user->id,
                 ]);
+
                 $createUser->assignRole('User');
                 $createUser->sendEmailVerificationNotification();
                 Auth::login($createUser);

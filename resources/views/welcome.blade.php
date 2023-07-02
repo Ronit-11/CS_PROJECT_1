@@ -57,16 +57,16 @@
             </nav>
 
             <main>
-            <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    @include('components.welcome')
-                    {{-- @include is used to parse the product array to subcomponent
-                    <x-welcome />--}}
+                <div class="py-12">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16">
+                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                            @include('components.welcome')
+                            {{-- @include is used to parse the product array to subcomponent
+                            <x-welcome />--}}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        </main>
+            </main>
         </div>
 
     @stack('modals')
