@@ -1,3 +1,4 @@
+
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -5,9 +6,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
                         <x-application-mark class="block h-9 w-auto" />
-                    </a>
                 </div>
 
                 <!-- Navigation Links -->
@@ -15,6 +14,28 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <div class="flex items-center">
+                    <x-dropdownLeft align="center" width="48" class="origin-top-left">
+                        <x-slot name="trigger">
+                            <span class="rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:outline-none focus:text-indigo-600 active:text-indigo-600 transition ease-in-out duration-150">
+                                    Categories
+                                </button>
+                            </span>
+                        </x-slot>
+                        <x-slot name="content">
+                            @isset($categories)
+                                @foreach($categories as $category)
+                                    <x-dropdown-link href="">
+                                        {{ $category->category_name }}
+                                    </x-dropdown-link>
+                                @endforeach
+                            @endisset
+                        </x-slot>
+                    </x-dropdownLeft>
+                    </div>
+
                 </div>
             </div>
 
@@ -76,13 +97,14 @@
                     <!-- Cart ICON -->
                     <div class="font-sans block align-middle text-orange hover:text-gray-700">
                         <a href="#" role="button" class="relative flex margin-top-2_5">
-                            <svg class="flex-1 w-7 h-7 fill-indigo-500" viewbox="0 0 24 24">
-                                <path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/>
+                            <svg class="flex-1 w-7 h-7" viewbox="0 0 24 24">
+                                <path fill="rgb(7 93 44)" d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/>
                             </svg>
                             <span class="absolute right-0 top-0 rounded-full bg-indigo-600 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">5</span>
                         </a>
                     </div>
 
+                    @if(Auth::user())
                     <!-- Settings Dropdown -->
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -92,7 +114,7 @@
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:outline-none focus:text-indigo-600 active:text-indigo-600 transition ease-in-out duration-150">
                                         {{ Auth::user()->name }}
 
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -105,7 +127,7 @@
 
                         <x-slot name="content">
                             <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
+                            <div class="block px-4 py-2 text-xs font-semibold text-gray-900">
                                 {{ __('Manage Account') }}
                             </div>
 
@@ -132,6 +154,15 @@
                             </form>
                         </x-slot>
                     </x-dropdown>
+                    @else
+                    <div class="text-right sm:right-0 items-center flex">
+                        <a href="{{ route('login') }}" class="ml-4 font-semibold text-gray-900 hover:text-indigo-600 focus:outline-none">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-900 hover:text-indigo-600 focus:outline-none">Register</a>
+                        @endif
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -156,7 +187,8 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        @if(Auth::User())
+            <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="shrink-0 mr-3">
@@ -226,5 +258,10 @@
                 @endif
             </div>
         </div>
+        @endif
     </div>
 </nav>
+
+<script>
+
+</script>
