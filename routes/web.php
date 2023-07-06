@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\GoogleLoginController;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +20,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if (Route::has('login')){
-        $Productdata = Product::all();
+
+        /*$ProductData = Product::all();
+        $categories = Category::all();*/
+
         if(Auth::user()){
-            return view('dashboard', [
-                'products' => $Productdata
-            ]);
+            return view('dashboard'/*, [
+                'products' => $ProductData,
+                'categories' => $categories
+            ]*/);
         } else {
-            return view('welcome', [
-                'products' => $Productdata
-            ]);
+            $fewProductData= Product::all()->random(24);  //get 24 records in random order
+            return view('dashboard'/*, [
+                'products' => $fewProductData,
+                'categories' => $categories
+            ]*/);
         }
-    }
+
 });
 
 Route::middleware([

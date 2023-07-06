@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('details');
+            $table->string('slug'); //product request
             $table->foreignId('vendors_id')->constrained(table: 'vendors', column: 'id',indexName: 'VendorsToProducts')->cascadeOnDelete()->cascadeOnUpdate(); //from vendors migration
             $table->text('description');
             $table->string('product');
-            $table->string('image')->default('Images/SERV.png');
+            $table->string('image')->default('Images/Products/SERV.png');
             $table->unsignedBigInteger('price');
-            $table->string('category');
+            $table->foreignId('category_id')->constrained(table: 'categories', column: 'id',indexName: 'VendorsToCategories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
