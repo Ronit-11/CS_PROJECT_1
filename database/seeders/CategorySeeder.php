@@ -14,8 +14,8 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create(['category_name' => 'Sweet food', 'slug' => 'Sweet food-',]);
-        Category::create(['category_name' => 'Spicy food', 'slug' => 'Sweet food-',]);
-        Category::create(['category_name' => 'Drinks', 'slug' => 'Sweet food-',]);
+        Category::create(['category_name' => 'Sweet food',]);
+        Category::create(['category_name' => 'Spicy food',]);
+        Category::create(['category_name' => 'Drinks',]);
     }
 }

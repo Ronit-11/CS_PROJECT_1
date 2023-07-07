@@ -5,20 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class WelcomeController extends Controller
+class testcontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-
         if(Auth::User()){
             $user = Auth::user();
             if($user->hasRole('Admin')){
@@ -43,6 +35,7 @@ class WelcomeController extends Controller
         }
         return view('dashboard');
     }
+
 
     /**
      * Show the form for creating a new resource.

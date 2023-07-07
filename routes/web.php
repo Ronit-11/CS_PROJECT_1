@@ -19,25 +19,7 @@ use Illuminate\Support\Facades\View;
 |
 */
 
-Route::get('/', function () {
-
-        /*$ProductData = Product::all();
-        $categories = Category::all();*/
-
-        if(Auth::user()){
-            return view('dashboard'/*, [
-                'products' => $ProductData,
-                'categories' => $categories
-            ]*/);
-        } else {
-            $fewProductData= Product::all()->random(24);  //get 24 records in random order
-            return view('dashboard'/*, [
-                'products' => $fewProductData,
-                'categories' => $categories
-            ]*/);
-        }
-
-});
+Route::get('/',[\App\Http\Controllers\WelcomeController::class, 'index'])->name('servStart');
 
 Route::middleware([
     'auth:sanctum',
