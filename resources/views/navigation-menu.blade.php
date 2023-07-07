@@ -11,29 +11,31 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-
+                    @if(Auth::User())
+                        <x-nav-link href="{{ route('dashboard') }}">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endif
                     <div class="flex items-center">
-                    <x-dropdownLeft align="center" width="48" class="origin-top-left">
-                        <x-slot name="trigger">
-                            <span class="rounded-md">
-                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:outline-none focus:text-indigo-600 active:text-indigo-600 transition ease-in-out duration-150">
-                                    Categories
-                                </button>
-                            </span>
-                        </x-slot>
-                        <x-slot name="content">
-                            @isset($categories)
-                                @foreach($categories as $category)
-                                    <x-dropdown-link href="">
-                                        {{ $category->category_name }}
-                                    </x-dropdown-link>
-                                @endforeach
-                            @endisset
-                        </x-slot>
-                    </x-dropdownLeft>
+                        <x-dropdownLeft align="center" width="48" class="origin-top-left">
+                            <x-slot name="trigger">
+                                <span class="rounded-md">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:outline-none focus:text-indigo-600 active:text-indigo-600 transition ease-in-out duration-150">
+                                        Categories
+                                    </button>
+                                </span>
+                            </x-slot>
+                            <x-slot name="content">
+                                @isset($categories)
+                                    <x-dropdown-link :href="route('servStart')">All</x-dropdown-link>
+                                    @foreach($categories as $category)
+                                        <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])">
+                                            {{ $category->category_name }}
+                                        </x-dropdown-link>
+                                    @endforeach
+                                @endisset
+                            </x-slot>
+                        </x-dropdownLeft>
                     </div>
 
                 </div>
@@ -184,6 +186,27 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <div class="flex items-center border-l-4 border-transparent">
+                <x-dropdownLeft align="center" width="48" class="origin-top-left">
+                    <x-slot name="trigger">
+                                <span class="rounded-md">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:outline-none focus:text-indigo-600 active:text-indigo-600 transition ease-in-out duration-150">
+                                        Categories
+                                    </button>
+                                </span>
+                    </x-slot>
+                    <x-slot name="content">
+                        @isset($categories)
+                            <x-dropdown-link :href="route('servStart')">All</x-dropdown-link>
+                            @foreach($categories as $category)
+                                <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])">
+                                    {{ $category->category_name }}
+                                </x-dropdown-link>
+                            @endforeach
+                        @endisset
+                    </x-slot>
+                </x-dropdownLeft>
+            </div>
         </div>
 
         <!-- Responsive Settings Options -->

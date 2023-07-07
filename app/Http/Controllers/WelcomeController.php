@@ -6,8 +6,8 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-use DB;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,19 +18,29 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        if($user->hasRole('Admin')){
-            return view('AdminDashboard');
-        } elseif ($user->hasRole('Vendor')){
-            return view('VendorDashboard');
-        } elseif ($user->hasRole('User')){
-            /*$ProductData = Product::all();  //all()->random(24)
-            $categories = Category::all();*/
-            return view('dashboard'/*, [
-                'products' => $ProductData,
-                'categories' => $categories
-            ]*/);
+        if(Auth::User()){
+            $user = Auth::user();
+            if($user->hasRole('Admin')){
+                return view('AdminDashboard');
+            } elseif ($user->hasRole('Vendor')){
+                return view('VendorDashboard');
+            } elseif ($user->hasRole('User')){
+                return $this->CategorizedProduct();
+            }
+        }else {
+            return $this->CategorizedProduct();
         }
+    }
+
+    protected function CategorizedProduct(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View
+    {
+        if (request()->category) {
+            $category_name = request()->category;
+            $category_id = Category::query()->where('category_name', '=', [$category_name])->get()->pluck('id');
+            $products = Product::query()->where('category_id', '=', [$category_id])->get();
+            return view('dashboard', ['CategorizedProducts' => $products, 'CategoryName' => $category_name] );
+        }
+        return view('dashboard');
     }
 
     /**
