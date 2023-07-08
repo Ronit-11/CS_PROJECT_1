@@ -26,11 +26,8 @@
                         <p class=' text-sm mt-1 font-medium text-gray-800'>{{ $Product -> description }}</p>
                     </div>
                 {{--@include('components.welcome')--}}
-                
-
             </div>
         </div>
     </div>
 </x-app-layout>
-
 
