@@ -36,7 +36,7 @@ class WelcomeController extends Controller
     {
         if (request()->category) {
             $category_name = request()->category;
-            $category_id = Category::query()->where('category_name', '=', [$category_name])->get()->pluck('id');
+            $category_id = Category::query()->where('categoryName', '=', [$category_name])->get()->pluck('id');
             $products = Product::query()->where('category_id', '=', [$category_id])->get();
             return view('dashboard', ['CategorizedProducts' => $products, 'CategoryName' => $category_name] );
         }
@@ -64,7 +64,10 @@ class WelcomeController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $category_id = $product->category_id;
+        $category_array = Category::query()->where('id','=', [$category_id])->get()->pluck('categoryName');
+        $category_name = $category_array[0];
+        return view('showProduct',['Product'=> $product, 'CategoryName' => $category_name]);
     }
 
     /**

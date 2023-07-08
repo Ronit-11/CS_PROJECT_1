@@ -29,8 +29,8 @@
                                 @isset($categories)
                                     <x-dropdown-link :href="route('servStart')">All</x-dropdown-link>
                                     @foreach($categories as $category)
-                                        <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])">
-                                            {{ $category->category_name }}
+                                        <x-dropdown-link :href="route('servStart', ['category'=>$category->categoryName])">
+                                            {{ $category->categoryName }}
                                         </x-dropdown-link>
                                     @endforeach
                                 @endisset
@@ -199,8 +199,8 @@
                         @isset($categories)
                             <x-dropdown-link :href="route('servStart')">All</x-dropdown-link>
                             @foreach($categories as $category)
-                                <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])">
-                                    {{ $category->category_name }}
+                                <x-dropdown-link :href="route('servStart', ['category'=>$category->categoryName])">
+                                    {{ $category->categoryName }}
                                 </x-dropdown-link>
                             @endforeach
                         @endisset

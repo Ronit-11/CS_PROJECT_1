@@ -9,8 +9,8 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 @if(isset($CategoryName))
                     <div class="flex">
-                        <x-nav-link href="{{ route('dashboard') }}" class="pr-0.2">
-                            Category >
+                        <x-nav-link href="{{ route('servStart') }}" class="pr-0.2">
+                            Home >
                         </x-nav-link>
                         <x-nav-link href="" class="pl-0 pr-0.2">
                             {{$CategoryName }}
