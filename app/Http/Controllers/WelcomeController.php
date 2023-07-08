@@ -18,6 +18,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
+
         if(Auth::User()){
             $user = Auth::user();
             if($user->hasRole('Admin')){
