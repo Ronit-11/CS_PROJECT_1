@@ -5,8 +5,8 @@
 @if (trim($slot) === 'Laravel')
 {{ $slot }}
 @else
-<img src="https://lh3.googleusercontent.com/pw/AJFCJaXXr5fWYE9BcANH18mcidnLLBlRbd0ymYoKauIaL5_P_WIAvyq_9MA7wUnHLuh_ogNe1UZR1wfZp2UDMKqqont7raA5j56CTCiqWJVKHHsVkIHveg=w2400" class="logo" alt="SERV Logo"><br>
-
+<img src="https://lh3.googleusercontent.com/iBlYbuuzkw59qXdTwC-CVw4QwhDe55djfYOEeVCL9vjVb_LwnuIEwCfeDUUhqZOKL_WFIOC9QunuTWIDSSY-oHvS4y5Sbj4TVC3BpJ95geIRCdLkO0D-AN52DOtkxFl9uQ=w1280" class="logo" alt="SERV Logo"><br>
+{{--upload in google then get photo url by inspecting--}}
 @endif
 </a>
 </td>
