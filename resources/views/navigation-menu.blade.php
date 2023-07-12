@@ -10,9 +10,9 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{--<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(Auth::User())
-                        <x-nav-link href="{{ route('dashboard') }}">
+                        <x-nav-link href="{{ route('servStart') }}">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     @endif
@@ -25,20 +25,22 @@
                                     </button>
                                 </span>
                             </x-slot>
-                            <x-slot name="content">
-                                @isset($categories)
+                            <x-slot name="content" wire:model="category">
+                                --}}{{--@isset($categories)
                                     <x-dropdown-link :href="route('servStart')">All</x-dropdown-link>
                                     @foreach($categories as $category)
-                                        <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])">
-                                            {{ $category->category_name }}
+                                        <x-dropdown-link :href="route('servStart', ['category'=>$category->categoryName])">
+                                            {{ $category->categoryName }}
                                         </x-dropdown-link>
                                     @endforeach
-                                @endisset
+                                @endisset--}}{{--
+                                @livewire('show-categories')
                             </x-slot>
                         </x-dropdownLeft>
                     </div>
+                </div>--}}
+                @livewire('show-categories')
 
-                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -97,14 +99,17 @@
                 <!-- right nav items -->
                 <div class="ml-3 relative flex">
                     <!-- Cart ICON -->
-                    <div class="font-sans block align-middle text-orange hover:text-gray-700">
+                    {{--<div class="font-sans block align-middle text-orange hover:text-gray-700">
                         <a href="#" role="button" class="relative flex margin-top-2_5">
                             <svg class="flex-1 w-7 h-7" viewbox="0 0 24 24">
                                 <path fill="rgb(7 93 44)" d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/>
                             </svg>
-                            <span class="absolute right-0 top-0 rounded-full bg-indigo-600 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">5</span>
+                            @if(isset($testcartNo))
+                            <span class="absolute right-0 top-0 rounded-full bg-indigo-600 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">{{ $testcartNo }}</span>
+                            @endif
                         </a>
-                    </div>
+                    </div>--}}
+                    @livewire('cart-count')
 
                     @if(Auth::user())
                     <!-- Settings Dropdown -->
@@ -182,7 +187,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        {{--<div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
@@ -196,19 +201,20 @@
                                 </span>
                     </x-slot>
                     <x-slot name="content">
-                        @isset($categories)
+                        --}}{{--@isset($categories)
                             <x-dropdown-link :href="route('servStart')">All</x-dropdown-link>
                             @foreach($categories as $category)
                                 <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])">
                                     {{ $category->category_name }}
                                 </x-dropdown-link>
                             @endforeach
-                        @endisset
+                        @endisset--}}{{--
+                        @livewire('show-categories')
                     </x-slot>
                 </x-dropdownLeft>
             </div>
-        </div>
-
+        </div>--}}
+        @livewire('show-categories')
         <!-- Responsive Settings Options -->
         @if(Auth::User())
             <div class="pt-4 pb-1 border-t border-gray-200">
@@ -286,5 +292,4 @@
 </nav>
 
 <script>
-
 </script>

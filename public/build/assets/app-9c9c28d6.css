@@ -25,18 +25,9 @@
 .caret-gray-900{
     caret-color: rgb(7, 93, 44);
 }
-::placeholder {
-    /* Firefox, Chrome, Opera */
+input::placeholder {
     color: rgb(7, 93, 44);
+    opacity: 1;
 }
-:-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: rgb(7, 93, 44);
-}
-::-ms-input-placeholder {
-    /* Microsoft Edge */
-    color: rgb(7, 93, 44);
-}
-
 .pl-0{padding-left: 0rem}
 .pr-0\.2{padding-right: 0.2rem}

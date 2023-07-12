@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $ProductData = Product::all();
+        $ProductData = Product::query()->inRandomOrder()->get()/*query()->paginate(10)*/;
         $categories = Category::all();
         View::share('products', $ProductData);
         View::share('categories', $categories);

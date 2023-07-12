@@ -10,6 +10,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class WelcomeController extends Controller
 {
@@ -37,9 +38,10 @@ class WelcomeController extends Controller
     {
         if (request()->category) {
             $category_name = request()->category;
-            $category_id = Category::query()->where('category_name', '=', [$category_name])->get()->pluck('id');
+            $category_id = Category::query()->where('categoryName', '=', [$category_name])->get()->pluck('id');
             $products = Product::query()->where('category_id', '=', [$category_id])->get();
-            return view('dashboard', ['CategorizedProducts' => $products, 'CategoryName' => $category_name] );
+            view::share('CategorizedProducts', $products);
+            return view('dashboard'/*, ['CategorizedProducts' => $products, 'CategoryName' => $category_name]*/ );
         }
         return view('dashboard');
     }
