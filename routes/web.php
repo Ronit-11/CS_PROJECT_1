@@ -32,6 +32,10 @@ Route::middleware([
     }*/)->name('dashboard');
 });
 
+Route::get('/cart', function(){
+    return view('CartDisplay');
+});
+
 //google login
 Route::get('auth/google/redirect', [GoogleLoginController::class, 'googleRedirect']);
 Route::get('auth/google/callback', [GoogleLoginController::class, 'loginWithGoogle']);

@@ -108,9 +108,21 @@
         </x-slot>
 
         <x-slot name="footer">
+            @php
+                if(isset($cartItems)){
+                    foreach($cartItems as $cart){
+                        if($cart->id == $selectedProduct->id){
+            @endphp
+                            <span>This Item is already in cart.</span>
+            @php
+                        }
+                    }
+                }else{
+            @endphp
             <x-button wire:click="addToCart" wire:loading.attr="disabled">
                 {{ __('Add To Cart')  }}
             </x-button>
+            @php } @endphp
         </x-slot>
     </x-product-modal>
 </div>

@@ -12,7 +12,7 @@ class ShowProductModal extends Component
     use WithPagination;
     public $showingProduct = false;
     public $selectedProduct, $sortedProducts;
-
+    public $cartItems;
     protected $listeners = [
         'hideMe' => 'hideProduct',
         'categoryUpdated'
