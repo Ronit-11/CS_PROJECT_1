@@ -5,9 +5,18 @@ The Personalized Meal Ordering System is a platform that allows users to order c
 
 ## Environment and Repository Setup
 Clone the repository: 
-   - HTTP: `git clone https://github.com/username/repository.git`
-   - SSH: `git clone git@github.com:username/repository.git`
-   - GitHub CLI: `gh repo clone username/repository`
+    - HTTP:
+```bash
+https://github.com/Ronit-11/SERV.git
+```
+   - SSH: [git@github.com:Ronit-11/SERV.git]()
+```bash
+git@github.com:Ronit-11/SERV.git
+```
+   - GitHub CLI:
+ ```bash
+gh repo clone Ronit-11/SERV
+``` 
 
 Composer upgrade:
    - To ensure all PHP dependencies are installed and up to date.
