@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
@@ -20,12 +21,13 @@ class CategoryResource extends Resource
     protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-flag';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('categoryName')->required()->autofocus()->unique()
+                Forms\Components\TextInput::make('categoryName')->required()->autofocus()->unique(ignoreRecord: true)
                     ->helperText('Category Name should be unique.')->label(__('Category Name')),
                 /*automaticaly add the name input into slug
                   ->reactive()->afterStateUpdated(function (Closure $set, $state){
@@ -50,7 +52,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('categoryName')->sortable()->label(__('Category Name')),
+                Tables\Columns\TextColumn::make('categoryName')->sortable()->label(__('Category Name'))->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime('d-m-y')->sortable(),
             ])
             ->filters([
@@ -78,5 +80,20 @@ class CategoryResource extends Resource
             'create' => Pages\CreateCategory::route('/create'),
             'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->hasRole('Admin');
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()->hasRole('Admin');
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return auth()->user()->hasRole('Admin');
     }
 }

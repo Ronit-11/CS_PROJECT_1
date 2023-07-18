@@ -9,8 +9,6 @@ class LogoutResponse implements Responsable
 {
     public function toResponse($request): RedirectResponse
     {
-        return redirect()->to(
-            config('filament.auth.pages.login') ? route('filament.auth.login') : config('filament.path'),
-        );
+        return redirect(url('/login'));
     }
 }

@@ -18,4 +18,9 @@ class  userCountWidget extends BaseWidget
             Card::make('Vendors', Vendors::count())->Icon('heroicon-s-collection'),
         ];
     }
+
+    public static function canView(): bool
+    {
+        return auth()->user()->hasRole('Admin');
+    }
 }

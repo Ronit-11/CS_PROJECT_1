@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Vendors;
+use Filament\Notifications\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,7 +13,7 @@ class ShowProductModal extends Component
 {
     use WithPagination;
     public $showingProduct = false;
-    public $selectedProduct, $sortedProducts;
+    public $selectedProduct, $sortedProducts, $vendor, $category;
     public $cartItems;
     protected $listeners = [
         'hideMe' => 'hideProduct',
@@ -58,14 +60,24 @@ class ShowProductModal extends Component
     public function showProduct(int $id){
         $this->selectedProduct = "";
         $getproduct = Product::query()->where('id','=',[$id])->get();
+        $this->vendor = Vendors::query()->where('id','=', $getproduct[0]->vendors_id)->pluck('Shop_name')[0];
+        $this->category = Category::query()->where('id','=', $getproduct[0]->category_id)->pluck('categoryName')[0];
         $this->selectedProduct = $getproduct[0];
         $this->showingProduct = true;
     }
     public function addToCart(){
         /*$this->selectedProduct->id  use this for adding to cart*/
-        $cartItems = 2;
+        $cartItems = 1;
         $this->emit('cartNo', $cartItems);
         $this->hideModal();
+
+        Notification::make()->title('test')->send();
+        Notification::make()
+            ->success()
+            ->title('Product Added To Cart')
+
+            ->duration(500000)
+            ->send();
     }
 
     public function hideModal(){

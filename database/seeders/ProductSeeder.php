@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
                 'details' => 'siwaka\'s food' . ' ' .$i,
                 'vendors_id' => '1', //Siwaka bakery
                 'description' => 'slightly salted with' . ' ' .$i. ' ' . 'sugar cubes and vinegar',
-                'product' => 'SWB-' . ' ' .$i,
+                'product' => 'SWB-' .$i,
                 'price' => rand(50, 1000),
                 'category_id' => '1',
             ]);
@@ -46,7 +46,7 @@ class ProductSeeder extends Seeder
                 'details' => 'siwaka\'s drinks' . ' ' .$i,
                 'vendors_id' => '1', //Siwaka beverages
                 'description' => 'crafted with' . ' ' .$i. ' ' . 'oranges and grapes',
-                'product' => 'SWBv-' . ' ' .$i,
+                'product' => 'SWBv-' .$i,
                 'price' => rand(50, 1000),
                 'category_id' => '3',
             ]);

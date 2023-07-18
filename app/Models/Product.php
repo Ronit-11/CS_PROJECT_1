@@ -14,7 +14,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'details',
-        'Vendor_id',
+        'vendors_id',
         'description',
         'product',
         'image',
@@ -24,7 +24,11 @@ class Product extends Model
     ];
 
     public function categorHas(): BelongsTo {
-        return $this->belongsTo(Category::class,'products','id','category_id');
+        return $this->belongsTo(Category::class,'category_id','id','product');
+    }
+
+    public function vendorHas(): BelongsTo {
+        return $this->belongsTo(Vendors::class,'vendors_id','id','vendorHasManyProducts');
     }
 
 }

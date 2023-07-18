@@ -74,7 +74,7 @@
             @foreach($sProducts as $product)
                 <button {{--type="button"--}} wire:click="showProduct({{ $product->id }})" wire:loading.attr="disabled" class="group">
                     <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                        <img src="{{ URL($product->image) }}" alt="{{ $product -> name }}" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                        <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product -> name }}" class="h-full w-full object-cover object-center group-hover:opacity-75">
                     </div>
                     <h3 class="mt-4 text-xl font-semibold text-gray-900">{{ $product -> name }}</h3>
                     <p class="mt-1 text-sm font-medium text-gray-800">KSh {{ $product -> price }}</p>
@@ -99,12 +99,32 @@
 
         <x-slot name="content">
             @if(isset($selectedProduct))
-                <img src="{{ URL($selectedProduct->image) }}" height="400px">
+                <div class="flex items-center justify-center">
+                    <img src="{{ asset('storage/'.$selectedProduct->image) }}" height="400px">
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div><strong>Category: </strong>{{ $category }}</div>
+                    <div><strong>Vendor: </strong>{{ $vendor }}</div>
+                    <div class="text-left"><strong>Price: </strong>KSh{{ $selectedProduct->price }}</div>
+                </div>
+
+                <div><strong>Description: </strong>{{ $selectedProduct->description }}</div>
+
             @endif
-            <x-input type="text" wire:model:lazy="description" placeholder="Extra Description"/>
+
+            <div class="flex items-center justify-between">
+                <div>
+                    <strong>Meal Modification: </strong>
+                    <x-input type="text" wire:model:lazy="description" placeholder="Extra Description"/>
+                </div>
                 {{--<x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />--}}
-            <x-input type="number" wire:model:lazy="quantity" required placeholder="quantity" value="1"/>
+                <div>
+                    <strong>Qty: </strong>
+                    <x-input type="number" wire:model:lazy="quantity" required placeholder="quantity" width="50px" value="1"/>
+                </div>
+            </div>
         </x-slot>
 
         <x-slot name="footer">
