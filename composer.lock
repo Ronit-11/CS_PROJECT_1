@@ -7073,6 +7073,7 @@
             },
             "abandoned": "symfony/html-sanitizer",
             "time": "2021-09-14T08:27:50+00:00"
+
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

@@ -13,8 +13,10 @@ class ShowProductModal extends Component
 {
     use WithPagination;
     public $showingProduct = false;
+
     public $selectedProduct, $sortedProducts, $vendor, $category;
     public $cartItems;
+
     protected $listeners = [
         'hideMe' => 'hideProduct',
         'categoryUpdated'
@@ -78,6 +80,7 @@ class ShowProductModal extends Component
 
             ->duration(500000)
             ->send();
+
     }
 
     public function hideModal(){

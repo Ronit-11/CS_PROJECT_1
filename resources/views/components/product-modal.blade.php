@@ -7,6 +7,7 @@
         </div>
 
         <div class="mt-4 text-lg text-gray-900">
+
             {{ $content }}
         </div>
     </div>
