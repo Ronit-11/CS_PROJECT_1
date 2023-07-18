@@ -23,9 +23,9 @@ class WelcomeController extends Controller
         if(Auth::User()){
             $user = Auth::user();
             if($user->hasRole('Admin')){
-                return view('AdminDashboard');
+                return redirect('/admin');
             } elseif ($user->hasRole('Vendor')){
-                return view('VendorDashboard');
+                return redirect('/admin');
             } elseif ($user->hasRole('User')){
                 return $this->CategorizedProduct();
             }

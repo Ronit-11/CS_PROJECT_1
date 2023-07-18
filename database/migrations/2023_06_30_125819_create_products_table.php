@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('details');
-            $table->string('slug'); //product request
+            /*$table->string('slug'); //product request*/
             $table->foreignId('vendors_id')->constrained(table: 'vendors', column: 'id',indexName: 'VendorsToProducts')->cascadeOnDelete()->cascadeOnUpdate(); //from vendors migration
             $table->text('description');
             $table->string('product');

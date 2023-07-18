@@ -40,30 +40,57 @@
 
 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
     @if(Auth::User())
-        <x-nav-link href="{{ route('servStart') }}" wire:click.prevent="selectcategory(0)">
-            {{ __('Dashboard') }}
-        </x-nav-link>
-    @endif
+        @if(Auth::User()->hasRole('Admin'))
 
-    <div class="flex items-center">
-        <x-dropdownLeft align="center" width="48" class="origin-top-left">
-            <x-slot name="trigger">
-                <span class="rounded-md">
-                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:outline-none focus:text-indigo-600 active:text-indigo-600 transition ease-in-out duration-150">
-                        Categories
-                    </button>
-                </span>
-            </x-slot>
-            <x-slot name="content" wire:model="category">
-                <div>
-                    {{--<x-dropdown-link :href="route('servStart')" wire:click.prevent="selectcategory(0)">All</x-dropdown-link>--}}
-                    @foreach($categories as $category)
-                        <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])" wire:click.prevent="selectcategory({{ $category->id }})">
-                            {{ $category->categoryName }}
-                        </x-dropdown-link>
-                    @endforeach
-                </div>
-            </x-slot>
-        </x-dropdownLeft>
-    </div>
+        @elseif(Auth::User()->hasRole('Vendor'))
+
+        @else
+            <x-nav-link href="{{ route('servStart') }}" wire:click.prevent="selectcategory(0)">
+                {{ __('Dashboard') }}
+            </x-nav-link>
+            <div class="flex items-center">
+                <x-dropdownLeft align="center" width="48" class="origin-top-left">
+                    <x-slot name="trigger">
+                    <span class="rounded-md">
+                        <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:outline-none focus:text-indigo-600 active:text-indigo-600 transition ease-in-out duration-150">
+                            Categories
+                        </button>
+                    </span>
+                    </x-slot>
+                    <x-slot name="content" wire:model="category">
+                        <div>
+                            {{--<x-dropdown-link :href="route('servStart')" wire:click.prevent="selectcategory(0)">All</x-dropdown-link>--}}
+                            @foreach($categories as $category)
+                                <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])" wire:click.prevent="selectcategory({{ $category->id }})">
+                                    {{ $category->categoryName }}
+                                </x-dropdown-link>
+                            @endforeach
+                        </div>
+                    </x-slot>
+                </x-dropdownLeft>
+            </div>
+        @endif
+    @else
+        <div class="flex items-center">
+            <x-dropdownLeft align="center" width="48" class="origin-top-left">
+                <x-slot name="trigger">
+                    <span class="rounded-md">
+                        <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:outline-none focus:text-indigo-600 active:text-indigo-600 transition ease-in-out duration-150">
+                            Categories
+                        </button>
+                    </span>
+                </x-slot>
+                <x-slot name="content" wire:model="category">
+                    <div>
+                        {{--<x-dropdown-link :href="route('servStart')" wire:click.prevent="selectcategory(0)">All</x-dropdown-link>--}}
+                        @foreach($categories as $category)
+                            <x-dropdown-link :href="route('servStart', ['category'=>$category->category_name])" wire:click.prevent="selectcategory({{ $category->id }})">
+                                {{ $category->categoryName }}
+                            </x-dropdown-link>
+                        @endforeach
+                    </div>
+                </x-slot>
+            </x-dropdownLeft>
+        </div>
+    @endif
 </div>

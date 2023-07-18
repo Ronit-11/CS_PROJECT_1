@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -11,7 +13,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -61,4 +63,17 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function canAccessFilament(): bool
+    {
+        if($this->hasRole('Admin') || $this->hasRole('Vendor')){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function VendorHas(): BelongsTo{
+        return $this->belongsTo(Vendors::class,'id','users_id','UserHasVendor');
+    }
 }

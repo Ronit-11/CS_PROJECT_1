@@ -10,8 +10,11 @@ class CartCount extends Component
     protected $listeners = [
         'cartNo'
     ];
+
+    public $test =null;
     public function cartNo($cartItems){
         $this->cartTotal = $cartItems + $this->cartTotal;
+        $this->test = "vendor added";
         $this->render();
     }
 
