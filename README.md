@@ -50,10 +50,7 @@ npm run dev
 2. Navigate to the project directory:
    - Open your terminal and change the current directory to the project folder: `cd Serv`
 
-3. Run the dependencies script:
-   - Execute `dependants.sh` to automatically install the required dependencies for the project.
-
-4. Start the project:
+3. Start the project:
    - Use the appropriate command to start the project, depending on the specific setup and requirements of your project.
 
 ## Dependencies
